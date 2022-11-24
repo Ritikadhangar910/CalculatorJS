@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    table {
+      border-collapse: separate;
+      border-spacing: 7px 20px;
+    }
+    .tabledata {
+      width: 2rem;
+      height: 4rem;
+      border-radius: 11px;
+      font-size: 32px;
+      text-align: center;
+      vertical-align: middle;
+      background-color: white;
+    }
+    .tabledata:hover {
+      background-color: #f3f0f0;
+    }
+    #showno {
+      height: 4.4rem;
+      margin-top: 1rem;
+      background: #c8cdc8;
+      border-radius: 10px;
+    }
+    #clacbody {
+      height: 31rem;
+      border-radius: 17px;
+      background: #817f7f;
+    }
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #calcheading {
+      font-size: 5.5rem;
+      font-family: cursive;
+    }
+    @media screen and (max-width: 750px) {
+      #calcheading {
+        font-size: 4rem;
+        margin-top: 1rem;
+      }
+      #clacbody {
+        width: 25rem;
+      }
+    }
+    @media screen and (max-width: 540px) {
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-1 order-md-1 order-2"></div>
+        <div class="col-md-5 mt-4 order-md-1 order-2" id="clacbody">
+          <div id="showno"></div>
+          <table style="width: 100%" class="maintable mt-3">
+            <tr>
+              <td class="tabledata num" id="seven" onclick="calculate(this.id)">
+                7
+              </td>
+              <td class="tabledata num" id="eight" onclick="calculate(this.id)">
+                8
+              </td>
+              <td class="tabledata num" id="nine" onclick="calculate(this.id)">
+                9
+              </td>
+              <td class="tabledata" id="divide" onclick="calculate(this.id)">
+                /
+              </td>
+            </tr>
+            <tr>
+              <td class="tabledata num" id="four" onclick="calculate(this.id)">
+                4
+              </td>
+              <td class="tabledata num" id="five" onclick="calculate(this.id)">
+                5
+              </td>
+              <td class="tabledata num" id="six" onclick="calculate(this.id)">
+                6
+              </td>
+              <td class="tabledata" id="mult" onclick="calculate(this.id)">
+                *
+              </td>
+            </tr>
+            <tr>
+              <td class="tabledata num" id="one" onclick="calculate(this.id)">
+                1
+              </td>
+              <td class="tabledata num" id="two" onclick="calculate(this.id)">
+                2
+              </td>
+              <td class="tabledata num" id="three" onclick="calculate(this.id)">
+                3
+              </td>
+              <td class="tabledata" id="minus" onclick="calculate(this.id)">
+                -
+              </td>
+            </tr>
+            '
+            <tr>
+              <td class="tabledata num" id="zero" onclick="calculate(this.id)">
+                0
+              </td>
+              <td class="tabledata" id="clear" onclick="calculate(this.id)">
+                C
+              </td>
+              <td class="tabledata" id="plus" onclick="calculate(this.id)">
+                +
+              </td>
+              <td
+                class="tabledata"
+                id="equal"
+                onclick="calculate(this.id)"
+                onblur="eraseit()"
+              >
+                =
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-1 order-md-2 order-1"></div>
+        <div class="col-md-5 box order-md-2 order-1">
+          <h1 id="calcheading">Calculator</h1>
+        </div>
+      </div>
+    </div>
+    <script>
+      let ans;
+      let ide = "";
+      let showno = document.getElementById("showno");
+      showno.style.fontSize = "32px";
+      showno.style.padding = "30px 5px";
+      let symbol;
+      const calculate = (param) => {
+        let text = document.getElementById(param);
+        if (text.innerText == "+") {
+          ide = ide + "+";
+          showno.innerHTML = ide;
+        } else if (text.innerText == "-") {
+          ide = ide + "-";
+          showno.innerHTML = ide;
+        } else if (text.innerText == "*") {
+          ide = ide + "*";
+          showno.innerHTML = ide;
+        } else if (text.innerText == "/") {
+          ide = ide + "/";
+          showno.innerHTML = ide;
+        } else if (text.innerText == "C") {
+          ide = " ";
+          showno.innerHTML = ide;
+        } else if (text.innerText == "=") {
+          ans = ide;
+          ans = eval(ans);
+          showno.innerHTML = ans;
+          ide = "";
+        } else {
+          let textinner = text.innerText;
+          ide = ide + Number(textinner);
+          showno.innerHTML = ide;
+        }
+      };
+    </script>
+  </body>
+</html>
